@@ -53,7 +53,7 @@
     [super viewDidAppear:animated];
     [self.headerView getUserInfo];
     [self.headerView getWalletBalance];
-    
+    [self.headerView getTherapyBalance];
     [self getMessage];
 
 }

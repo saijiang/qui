@@ -60,12 +60,16 @@
 -(void)getTherapyBalance{
     [UserServices getThreapayBalanceWithuserId:[KeychainManager readUserId] completionBlock:^(int result, id responseObject) {
         if (result == 0) {
+           
           self.therapyDetailsArr = responseObject[@"data"][@"detail"];
-        NSString *str=[NSString stringWithFormat:@"疗养券: %ld",self.therapyDetailsArr.count];
+          
+           
+            NSString *str =[NSString stringWithFormat:@"疗养券: %.2f",[responseObject[@"data"][@"amount"] floatValue]];
+          
             [self.therayButton setTitle:str forState:UIControlStateNormal];
         }
         else{
-            [UnityLHClass showHUDWithStringAndTime:responseObject[@"msg"]];
+//            [UnityLHClass showHUDWithStringAndTime:responseObject[@"msg"]];
         }
     }];
 }
@@ -104,7 +108,8 @@
         
         [self.integralButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.ibiButton.mas_top);
-            make.right.mas_equalTo(self.ibiButton.mas_left).offset(-40);
+            make.right.mas_equalTo(self.ibiButton.mas_left);
+            make.left.mas_equalTo(self.topImage.mas_left);
         }];
         
     }
@@ -230,14 +235,14 @@
     }];
     [self.integralButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ibiButton.mas_top);
-        make.right.mas_equalTo(self.ibiButton.mas_left).offset(-40);
-//        make.width.mas_equalTo(self.topImage.mas_width);
+        make.right.mas_equalTo(self.ibiButton.mas_left);
+        make.left.mas_equalTo(self.topImage.mas_left);
     }];
     
     [self.therayButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ibiButton.mas_top);
-        make.left.mas_equalTo(self.ibiButton.mas_right).offset(40);
-        //        make.width.mas_equalTo(self.topImage.mas_width);
+        make.left.mas_equalTo(self.ibiButton.mas_right);
+        make.right.mas_equalTo(self.topImage.mas_right);
     }];
     
     

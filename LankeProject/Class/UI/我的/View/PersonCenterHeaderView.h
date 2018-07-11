@@ -12,4 +12,5 @@
 @property(nonatomic,strong)NSDictionary*dataDic;
 -(void)getUserInfo;
 -(void)getWalletBalance;
+-(void)getTherapyBalance;
 @end
