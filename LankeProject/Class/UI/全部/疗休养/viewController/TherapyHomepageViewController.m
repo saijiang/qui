@@ -8,6 +8,7 @@
 
 #import "TherapyHomepageViewController.h"
 #import <WebKit/WebKit.h>
+#import "NSString+MHCommon.h"
 @interface TherapyHomepageViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong) WKWebView *webView;
 @property(nonatomic,strong) UIProgressView *pro;
@@ -20,8 +21,9 @@
     [self rewriteBackButton];
     NSString *strMD5 = [NSString stringWithFormat:@"%d%@%@",15,[KeychainManager readMobileNum],[KeychainManager readUserId]];
     NSString *superStr = [strMD5 uppercaseString];
-    
+    superStr = [superStr md5];
     NSString *url = [NSString stringWithFormat:@"http://mpassdev.aoyou.com/unionlogin?uniontype=15&mobile=%@&unionid=%@&token=%@&jumptype=1",[KeychainManager readMobileNum],[KeychainManager readUserId],superStr];
+//    NSLog(@"%@",url);
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     self.webView.navigationDelegate = self;
