@@ -326,8 +326,13 @@
     [self.navigationController pushViewController:mallHome animated:YES];
 }
 - (void) navigationToTherapy{
-    TherapyHomepageViewController *therapyHome=[[TherapyHomepageViewController alloc]init];
-    [self.navigationController pushViewController:therapyHome animated:YES];
+    [LKUserAccessManager userNextStepJudgeAccessLoginHandle:nil normalHandle:^{
+        
+        TherapyHomepageViewController *therapyHome=[[TherapyHomepageViewController alloc]init];
+        [self.navigationController pushViewController:therapyHome animated:YES];
+        
+    }];
+    
 }
 
 - (void) navigationToHealth
