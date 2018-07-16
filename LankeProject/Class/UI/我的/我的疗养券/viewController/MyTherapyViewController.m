@@ -82,7 +82,7 @@
     UIButton *passwordBtn = [[UIButton alloc] init];
     [passwordBtn addTarget:self action:@selector(passwordAction:) forControlEvents:UIControlEventTouchUpInside];
     [passwordBtn setImage:[UIImage imageNamed:@"Wallet-password"] forState:UIControlStateNormal];
-    [passwordBtn setTitle:@"疗养卷明细" forState:UIControlStateNormal];
+    [passwordBtn setTitle:@"疗养券明细" forState:UIControlStateNormal];
     [passwordBtn setTitleColor:BM_BLACK forState:UIControlStateNormal];
     passwordBtn.titleLabel.font = BM_FONTSIZE12;
     passwordBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;

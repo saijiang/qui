@@ -35,9 +35,9 @@
  *   客户生产环境服务器
  */
 //#define API_SEVERID @"http://139.159.218.169:8080" //jzh帮忙修改的
-#define API_SEVERID @"http://159.226.55.111:8080"
+#define API_SEVERID @"http://159.226.55.111:8080/zhsq/api/"
 
-#define API_THREPAYSEVERID @"http://159.226.55.111:8080"//疗养券
+#define API_THREPAYSEVERID @"http://159.226.55.111:8080/zhsq/"//疗养券
 
 #else
 
@@ -45,8 +45,8 @@
  *   客户生产环境服务器
  */
 //#define API_SEVERID @"http://139.159.218.169:8080"  //jzh帮忙修改的
-#define API_SEVERID @"http://159.226.55.111:8080"
-#define API_THREPAYSEVERID @"http://159.226.55.111:8080"//疗养券
+#define API_SEVERID @"http://159.226.55.111:8080/zhsq/api/"
+#define API_THREPAYSEVERID @"http://159.226.55.111:8080/zhsq/"//疗养券
 ///**
 // * 测试地址服务器
 // */
