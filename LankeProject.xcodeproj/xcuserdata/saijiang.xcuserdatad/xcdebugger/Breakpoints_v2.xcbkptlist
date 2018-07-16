@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LankeProject/Class/System/Network/UserServices.m"
-            timestampString = "553409529.2606061"
+            filePath = "LankeProject/Class/UI/&#x6211;&#x7684;/&#x6211;&#x7684;&#x7597;&#x517b;&#x5238;/viewController/MyTherapyViewController.m"
+            timestampString = "553415726.721318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "+advertAdvertListCompletionBlock:"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-dataDemandFormServer"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
