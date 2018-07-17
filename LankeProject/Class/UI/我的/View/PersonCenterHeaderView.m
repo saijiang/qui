@@ -22,6 +22,9 @@
 @property (nonatomic, strong) UIButton * ibiButton;
 /*  疗养券  */
 @property(nonatomic,strong)  UIButton *therayButton;
+/*  分割  */
+@property(nonatomic,strong) UILabel *centerLineLabel;
+
 @property(nonatomic,copy) NSArray *therapyDetailsArr;//疗养券信息
 
 
@@ -105,13 +108,7 @@
         [self.integralButton setTitle:[NSString stringWithFormat:@"积分: %@",data[@"integral"]] forState:UIControlStateNormal];
      
         [self.userHeadBtn sd_setImageWithURL:[NSURL URLWithString:data[@"headImage"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"detault_user_icon"]];
-        
-        [self.integralButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.ibiButton.mas_top);
-            make.right.mas_equalTo(self.ibiButton.mas_left);
-            make.left.mas_equalTo(self.topImage.mas_left);
-        }];
-        
+    
     }
     else
     {
@@ -121,10 +118,7 @@
         
         [self.userHeadBtn setImage:[UIImage imageNamed:@"detault_user_icon"] forState:UIControlStateNormal];
         
-        [self.integralButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self.topImage.mas_centerX);
-            make.top.mas_equalTo(self.userHeadBtn.mas_bottom).offset((DEF_SCREEN_HEIGHT*3/7 - 200) / 2);
-        }];
+     
         
     }
     [self.integralButton handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
@@ -215,23 +209,47 @@
     self.therayButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.therayButton.hidden=YES;
     [self.topImage addSubview:self.therayButton];
+    //分割label
+    self.centerLineLabel = [UnityLHClass masonryLabel:@"" font:2 color:[UIColor redColor]];
+    [self.topImage addSubview:self.centerLineLabel];
     
-    /* old
+    
+    
+  // old
     [self.integralButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.topImage.mas_centerX);
         make.top.mas_equalTo(self.userHeadBtn.mas_bottom).offset(15);
         make.width.mas_equalTo(self.topImage.mas_width);
     }];
-    [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.centerLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.topImage.mas_centerX);
-        make.top.mas_equalTo(self.integralButton.mas_bottom);
-        make.width.mas_equalTo(self.topImage.mas_width);
+        make.top.mas_equalTo(self.integralButton.mas_bottom).offset(5);
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(10);
     }];
-    */
+    
+    [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.centerLineLabel.mas_left).offset(-5);
+        make.top.mas_equalTo(self.centerLineLabel.mas_top);
+
+    }];
+    [self.therayButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.ibiButton.mas_top);
+        make.left.mas_equalTo(self.centerLineLabel.mas_right).offset(5);
+       
+    }];
+    
+//    [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.mas_equalTo(self.topImage.mas_centerX);
+//        make.top.mas_equalTo(self.integralButton.mas_bottom);
+//        make.width.mas_equalTo(self.topImage.mas_width);
+//    }];
+   
+    /*
     [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.topImage.mas_centerX);
         make.top.mas_equalTo(self.userHeadBtn.mas_bottom).offset((DEF_SCREEN_HEIGHT*3/7 - 200) / 2);
-//        make.width.mas_equalTo(self.topImage.mas_width);
+
     }];
     [self.integralButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ibiButton.mas_top);
@@ -244,7 +262,7 @@
         make.left.mas_equalTo(self.ibiButton.mas_right);
         make.right.mas_equalTo(self.topImage.mas_right);
     }];
-    
+    */
     
     PersonCenterOrderView *orderListView=[[PersonCenterOrderView alloc]init];
     [self.topImage addSubview:orderListView];
