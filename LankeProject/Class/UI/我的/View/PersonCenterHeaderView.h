@@ -13,4 +13,5 @@
 -(void)getUserInfo;
 -(void)getWalletBalance;
 -(void)getTherapyBalance;
+-(void)remakeUI;
 @end

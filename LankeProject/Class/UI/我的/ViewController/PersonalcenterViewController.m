@@ -58,6 +58,11 @@
 
 }
 
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self.headerView remakeUI];
+}
+
 -(void)getMessage
 {
     [UserServices

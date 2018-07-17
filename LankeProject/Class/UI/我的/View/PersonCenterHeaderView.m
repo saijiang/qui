@@ -12,6 +12,7 @@
 #import "IntegralCenterViewController.h"
 #import "WalletViewController.h"
 #import "MyThreapayDeatilsViewController.h"
+
 @interface PersonCenterHeaderView ()
 
 @property (nonatomic, strong) UIImageView *topImage;
@@ -25,12 +26,36 @@
 /*  分割  */
 @property(nonatomic,strong) UILabel *centerLineLabel;
 
+//为了设置居中
+@property(nonatomic,assign) CGFloat ibiButtonWidth;
+@property(nonatomic,assign) CGFloat therayButtonWidth;
+@property(nonatomic,assign) CGFloat lastWidth;
+
+
 @property(nonatomic,copy) NSArray *therapyDetailsArr;//疗养券信息
 
 
 @end
 
 @implementation PersonCenterHeaderView
+
+-(void)remakeUI{
+    [super layoutIfNeeded];
+    self.ibiButtonWidth = self.ibiButton.frame.size.width;
+    self.therayButtonWidth = self.therayButton.frame.size.width;
+    self.lastWidth = [UIScreen mainScreen].bounds.size.width - self.ibiButtonWidth - self.therayButtonWidth - 10;
+    
+    NSLog(@"%lf %lf %lf",self.ibiButtonWidth,self.therayButtonWidth,self.lastWidth);
+    
+    [self.ibiButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.integralButton.mas_bottom).offset(5);
+        make.left.mas_equalTo(self.topImage.mas_left).offset(self.lastWidth / 2);
+    }];
+    [self.therayButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.ibiButton.mas_top);
+        make.right.mas_equalTo(self.topImage.mas_right).offset(-(self.lastWidth / 2));
+    }];
+}
 
 -(void)getUserInfo
 {
@@ -72,7 +97,7 @@
             [self.therayButton setTitle:str forState:UIControlStateNormal];
         }
         else{
-//            [UnityLHClass showHUDWithStringAndTime:responseObject[@"msg"]];
+
         }
     }];
 }
@@ -199,6 +224,7 @@
     self.integralButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 
     [self.topImage addSubview:self.integralButton];
+ 
     //积分
     self.ibiButton = [UnityLHClass masonryButton:@"i币:" font:16 color:[UIColor whiteColor]];
     self.ibiButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -213,6 +239,8 @@
     self.centerLineLabel = [UnityLHClass masonryLabel:@"" font:2 color:[UIColor redColor]];
     [self.topImage addSubview:self.centerLineLabel];
     
+ 
+
     
     
   // old
@@ -221,6 +249,8 @@
         make.top.mas_equalTo(self.userHeadBtn.mas_bottom).offset(15);
         make.width.mas_equalTo(self.topImage.mas_width);
     }];
+   
+
     [self.centerLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.topImage.mas_centerX);
         make.top.mas_equalTo(self.integralButton.mas_bottom).offset(5);
@@ -231,38 +261,17 @@
     [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.centerLineLabel.mas_left).offset(-5);
         make.top.mas_equalTo(self.centerLineLabel.mas_top);
+       
 
     }];
     [self.therayButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.ibiButton.mas_top);
+     
         make.left.mas_equalTo(self.centerLineLabel.mas_right).offset(5);
        
     }];
-    
-//    [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(self.topImage.mas_centerX);
-//        make.top.mas_equalTo(self.integralButton.mas_bottom);
-//        make.width.mas_equalTo(self.topImage.mas_width);
-//    }];
-   
-    /*
-    [self.ibiButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.topImage.mas_centerX);
-        make.top.mas_equalTo(self.userHeadBtn.mas_bottom).offset((DEF_SCREEN_HEIGHT*3/7 - 200) / 2);
+ 
 
-    }];
-    [self.integralButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.ibiButton.mas_top);
-        make.right.mas_equalTo(self.ibiButton.mas_left);
-        make.left.mas_equalTo(self.topImage.mas_left);
-    }];
-    
-    [self.therayButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.ibiButton.mas_top);
-        make.left.mas_equalTo(self.ibiButton.mas_right);
-        make.right.mas_equalTo(self.topImage.mas_right);
-    }];
-    */
     
     PersonCenterOrderView *orderListView=[[PersonCenterOrderView alloc]init];
     [self.topImage addSubview:orderListView];
@@ -275,6 +284,7 @@
     }];
     
 }
+
 #pragma mark - 事件处理
 - (void)userInfoAction:(UIButton *)sender
 {
