@@ -12,6 +12,7 @@
 @interface TherapyHomepageViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong) WKWebView *webView;
 @property(nonatomic,strong) UIProgressView *pro;
+@property(nonatomic,strong) UILabel *titleName;//标题
 @end
 
 @implementation TherapyHomepageViewController
@@ -30,6 +31,7 @@
     self.webView.UIDelegate = self;
     [self.view addSubview:self.webView];
     [self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:0 context:nil];
+    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.mas_equalTo(self.view);
@@ -41,6 +43,8 @@
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
     self.pro.hidden = NO;
 }
+
+
 
 -(UIProgressView *)pro{
     if (!_pro) {
@@ -76,16 +80,29 @@
                                  [self.pro setProgress:0.0f animated:NO];
                              }];
         }
-    }else{
+    }
+    else if ([keyPath isEqualToString:@"title"]){
+        if (object == self.webView) {
+            self.title = self.webView.title;
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
+    }
+    
+    
+    else{
         [super observeValueForKeyPath:keyPath
                              ofObject:object
                                change:change
                               context:context];
     }
+   
+    
 }
 
 -(void)dealloc{
     [self.webView removeObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress))];
+     [self.webView removeObserver:self forKeyPath:@"title"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
