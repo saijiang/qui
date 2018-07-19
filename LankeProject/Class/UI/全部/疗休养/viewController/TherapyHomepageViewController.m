@@ -114,11 +114,13 @@
 }
 #pragma mark 重写返回按钮
 -(void)rewriteBackButton{
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+   
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     //设置UIButton的图像
     [backButton setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
     //给UIButton绑定一个方法，在这个方法中进行popViewControllerAnimated
-    [backButton addTarget:self action:@selector(backItemClick) forControlEvents:UIControlEventTouchUpInside];
+//    [backButton addTarget:self action:@selector(backItemClick) forControlEvents:UIControlEventTouchUpInside];
+  
     //nav_close
     
     UIButton *closeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -132,10 +134,12 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     UIBarButtonItem *closeItem = [[UIBarButtonItem alloc]initWithCustomView:closeButton];
     //覆盖返回按键
-    self.navigationItem.leftBarButtonItems = @[backItem,closeItem];
+    self.navigationItem.leftBarButtonItem = backItem;
+    self.navigationItem.rightBarButtonItem = closeItem;
 
 
 }
+/*
 -(void)backItemClick{
     if ([self.webView canGoBack]) {
         [self.webView goBack];
@@ -143,7 +147,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
+*/
 -(void)closeWeb{
     [self.navigationController popViewControllerAnimated:YES];
 }
