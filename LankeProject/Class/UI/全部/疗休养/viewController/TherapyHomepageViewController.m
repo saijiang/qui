@@ -12,7 +12,7 @@
 @interface TherapyHomepageViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong) WKWebView *webView;
 @property(nonatomic,strong) UIProgressView *pro;
-@property(nonatomic,strong) UILabel *titleName;//标题
+//@property(nonatomic,strong) UILabel *titleName;//标题
 @end
 
 @implementation TherapyHomepageViewController
@@ -83,7 +83,11 @@
     }
     else if ([keyPath isEqualToString:@"title"]){
         if (object == self.webView) {
-            self.title = self.webView.title;
+            if ([self.webView.title length] > 14) {
+                self.title = [NSString stringWithFormat:@"%@...",[self.webView.title substringToIndex:14]];
+            }
+            else
+              self.title = self.webView.title;
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
@@ -110,19 +114,26 @@
 }
 #pragma mark 重写返回按钮
 -(void)rewriteBackButton{
-//    UIButton *pageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [pageButton setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
-//    pageButton.frame = CGRectMake(0, 0, 14, 24);
     UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     //设置UIButton的图像
     [backButton setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
     //给UIButton绑定一个方法，在这个方法中进行popViewControllerAnimated
     [backButton addTarget:self action:@selector(backItemClick) forControlEvents:UIControlEventTouchUpInside];
+    //nav_close
+    
+    UIButton *closeButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    //设置UIButton的图像
+    [closeButton setImage:[UIImage imageNamed:@"nav_close"] forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeWeb) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     //然后通过系统给的自定义BarButtonItem的方法创建BarButtonItem
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    UIBarButtonItem *closeItem = [[UIBarButtonItem alloc]initWithCustomView:closeButton];
     //覆盖返回按键
-    self.navigationItem.leftBarButtonItem = backItem;
- 
+    self.navigationItem.leftBarButtonItems = @[backItem,closeItem];
+
 
 }
 -(void)backItemClick{
@@ -133,7 +144,9 @@
     }
 }
 
-
+-(void)closeWeb{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation
