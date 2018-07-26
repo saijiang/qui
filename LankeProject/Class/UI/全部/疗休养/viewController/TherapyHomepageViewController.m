@@ -23,7 +23,7 @@
     NSString *strMD5 = [NSString stringWithFormat:@"%d%@%@",15,[KeychainManager readMobileNum],[KeychainManager readUserId]];
     NSString *superStr = [strMD5 uppercaseString];
     superStr = [superStr md5];
-    NSString *url = [NSString stringWithFormat:@"http://mpassdev.aoyou.com/unionlogin?uniontype=15&mobile=%@&unionid=%@&token=%@&jumptype=1",[KeychainManager readMobileNum],[KeychainManager readUserId],superStr];
+    NSString *url = [NSString stringWithFormat:@"http://mpass.aoyou.com/unionlogin?uniontype=15&mobile=%@&unionid=%@&token=%@&jumptype=1",[KeychainManager readMobileNum],[KeychainManager readUserId],superStr];
 //    NSLog(@"%@",url);
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
