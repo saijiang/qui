@@ -45,6 +45,39 @@
 }
 
 
+#pragma mark 默认禁止调用 alert Tel
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
+    NSURL *URL = navigationAction.request.URL;
+    NSString *scheme = [URL scheme];
+    UIApplication *app = [UIApplication sharedApplication];
+    // 打电话
+    if ([scheme isEqualToString:@"tel"]) {
+        if ([app canOpenURL:URL]) {
+            [app openURL:URL];
+            // 一定要加上这句,否则会打开新页面
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
+        }
+    }
+
+        decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+
+/*
+#pragma mark 拦截URL
+-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+    NSString *strRequest = [navigationAction.request.URL.absoluteString stringByRemovingPercentEncoding];
+    NSLog(@"%@",strRequest);
+    if ([strRequest hasPrefix:@"tel:"]) {
+        NSLog(@"我");
+    }
+    else{
+       NSLog(@"我的");
+    }
+}
+*/
 
 -(UIProgressView *)pro{
     if (!_pro) {
