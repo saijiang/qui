@@ -13,6 +13,7 @@
 		2FFCAB4220D0F5BD003B810C /* JKUBS+Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFCAB4020D0F5BC003B810C /* JKUBS+Handler.m */; };
 		2FFCAB4420D0F5D6003B810C /* JKUBSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FFCAB4320D0F5D6003B810C /* JKUBSConfig.plist */; };
 		2FFCAB5420D0F6E8003B810C /* JKUBSAspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFCAB5320D0F6E8003B810C /* JKUBSAspects.m */; };
+		45BB49C92110282C0034A9EE /* WebviewProgressLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BB49C82110282C0034A9EE /* WebviewProgressLine.m */; };
 		5819C8E81FEB62C3000D6C7B /* JDFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5819C8E71FEB62C3000D6C7B /* JDFilterCell.m */; };
 		5819C8EB1FEB6349000D6C7B /* JDFilterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5819C8EA1FEB6349000D6C7B /* JDFilterHeaderView.m */; };
 		5819C8EE1FEB63C3000D6C7B /* JDFilterFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5819C8ED1FEB63C3000D6C7B /* JDFilterFooterView.m */; };
@@ -849,6 +850,8 @@
 		2FFCAB4320D0F5D6003B810C /* JKUBSConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JKUBSConfig.plist; sourceTree = "<group>"; };
 		2FFCAB5220D0F6E8003B810C /* JKUBSAspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKUBSAspects.h; sourceTree = "<group>"; };
 		2FFCAB5320D0F6E8003B810C /* JKUBSAspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKUBSAspects.m; sourceTree = "<group>"; };
+		45BB49C72110282C0034A9EE /* WebviewProgressLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebviewProgressLine.h; sourceTree = "<group>"; };
+		45BB49C82110282C0034A9EE /* WebviewProgressLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebviewProgressLine.m; sourceTree = "<group>"; };
 		5819C8E61FEB62C3000D6C7B /* JDFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDFilterCell.h; sourceTree = "<group>"; };
 		5819C8E71FEB62C3000D6C7B /* JDFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDFilterCell.m; sourceTree = "<group>"; };
 		5819C8E91FEB6349000D6C7B /* JDFilterHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDFilterHeaderView.h; sourceTree = "<group>"; };
@@ -2630,6 +2633,15 @@
 			path = JKUBS;
 			sourceTree = "<group>";
 		};
+		45BB49C6211028040034A9EE /* progressView */ = {
+			isa = PBXGroup;
+			children = (
+				45BB49C72110282C0034A9EE /* WebviewProgressLine.h */,
+				45BB49C82110282C0034A9EE /* WebviewProgressLine.m */,
+			);
+			path = progressView;
+			sourceTree = "<group>";
+		};
 		582D1D0D1FEA14CA00EFC5C4 /* 京东商品 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2802,6 +2814,7 @@
 		6566A20420F19AF2001D9A53 /* 疗休养 */ = {
 			isa = PBXGroup;
 			children = (
+				45BB49C6211028040034A9EE /* progressView */,
 				6566A20520F19B17001D9A53 /* viewController */,
 			);
 			path = "疗休养";
@@ -9456,6 +9469,7 @@
 				8A72CE0C1EAF312600E3DD83 /* LKFilterCCell.m in Sources */,
 				F392B1D61E02452600C32122 /* ExpenseCell.m in Sources */,
 				8B2760211FE90C8D005DFAAD /* AddLogisticsViewController.m in Sources */,
+				45BB49C92110282C0034A9EE /* WebviewProgressLine.m in Sources */,
 				8A72CDF31EAF312500E3DD83 /* OneShopClassificationViewController.m in Sources */,
 				8A782D101EADF00D0036D678 /* CommunityTermsViewController.m in Sources */,
 				8A1EADEA1CFD7578002292FB /* DataHander.m in Sources */,
